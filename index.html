@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catering Call Center Outsourcing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            margin: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            margin: 0;
+        }
+        .cta {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .cta:hover {
+            background-color: #e68a00;
+        }
+        .services {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .service {
+            text-align: center;
+            width: 30%;
+            min-width: 250px;
+            margin: 10px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        #consultation {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .calendly-inline-widget {
+            min-height: 630px;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .services {
+                flex-direction: column;
+                align-items: center;
+            }
+            .service {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Stress-Free Customer Support for Busy Catering Teams</h1>
+    <h2>Handle after-hours calls, booking chaos, and urgent requests—so your team can focus on the food.</h2>
+    <button class="cta" id="book-consultation">Book Free Consultation</button>
+</header>
+
+<section id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+        <div class="service">
+            <h3>After-Hours Coverage 🌙</h3>
+            <p>Never miss a late-night emergency call.</p>
+        </div>
+        <div class="service">
+            <h3>Booking Management 📅</h3>
+            <p>Resolve double-books while your team preps events.</p>
+        </div>
+        <div class="service">
+            <h3>Customer Retention ❤️</h3>
+            <p>Turn frustrated clients into raving fans.</p>
+        </div>
+    </div>
+</section>
+
+<section id="how-it-works">
+    <h2>How It Works</h2>
+    <ol>
+        <li>You forward calls/emails during busy periods.</li>
+        <li>I resolve issues using your playbook.</li>
+        <li>You get a daily report.</li>
+    </ol>
+</section>
+
+<section id="testimonials">
+    <h2>Testimonials</h2>
+    <blockquote>
+        <p>"Saved 20+ hours/week during wedding season!" – <strong>Local Caterer</strong></p>
+    </blockquote>
+    <blockquote>
+        <p>"Our customer satisfaction increased by 35% after implementing this service." – <strong>Events Delight</strong></p>
+    </blockquote>
+</section>
+
+<section id="faq">
+    <h2>FAQ</h2>
+    <dl>
+        <dt>Will my team lose control?</dt>
+        <dd>No—you approve all major decisions.</dd>
+        <dt>Cost?</dt>
+        <dd>Starting at $299/week (no contracts).</dd>
+        <dt>How quickly can you start?</dt>
+        <dd>We can be operational within 48 hours of signing.</dd>
+        <dt>Do you work with small caterers?</dt>
+        <dd>Absolutely! We offer scalable solutions for all sizes.</dd>
+    </dl>
+</section>
+
+<section id="consultation">
+    <h2>Schedule Your Free Consultation</h2>
+    <div class="calendly-inline-widget" data-url="https://calendly.com/kobrien2318" style="min-width:320px;height:630px;"></div>
+</section>
+
+<footer>
+    <p>&copy; 2023 Catering Call Center Outsourcing. All rights reserved.</p>
+    <p>Contact: support@cateringoutsource.com | (555) 123-4567</p>
+</footer>
+
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+    // Initialize Calendly widget
+    document.getElementById('book-consultation').addEventListener('click', function() {
+        // Scroll to the consultation section
+        document.getElementById('consultation').scrollIntoView({ behavior: 'smooth' });
+        
+        // Initialize Calendly widget after a short delay to ensure it's visible
+        setTimeout(function() {
+            Calendly.initPopupWidget({
+                url: 'https://calendly.com/d/c9r-7qg-dwq/catering-support-consultation'
+            });
+        }, 500);
+    });
+</script>
+</body>
+</html>
