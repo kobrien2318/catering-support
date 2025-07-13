@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
   padding: 25px;
 }
@@ -28,3 +29,35 @@ body{
     width: 100%;
     cursor: pointer;
 }
+=======
+body{
+  padding: 25px;
+}
+.title {
+	color: #5C6AC4;
+}
+#consultation form {
+    display: grid;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#consultation label {
+    font-weight: bold;
+}
+
+#consultation input,
+#consultation textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#consultation button.cta {
+    width: 100%;
+    cursor: pointer;
+}
+>>>>>>> 2e191bee843aa4080eef6ab2f791c7cd25675107
