@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin O'Brien Enterprises</title>
+    <title>Kevin O'Brien Enterprises - Fixed Calendly Issue</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -15,11 +15,18 @@
         }
         * { box-sizing: border-box; }
         body {
-            font-family: 'Lora', 'Roboto', sans-serif; /* elegant primary font with clean fallback */
+            font-family: 'Lora', 'Roboto', sans-serif;
             margin: 0;
             background-color: var(--brand-bg);
             color: #333;
             line-height: 1.6;
+            /* Ensure scrolling is enabled by default */
+            overflow: auto;
+        }
+        body.calendly-open {
+            /* Calendly adds this class - we'll override it */
+            overflow: auto !important;
+            position: static !important;
         }
         header {
             background: var(--brand-green);
@@ -54,7 +61,7 @@
             border: none;
             color: #fff;
             font-weight: 700;
-            font-family: 'Roboto', sans-serif; /* keep buttons crisp */
+            font-family: 'Roboto', sans-serif;
             cursor: pointer;
             transition: background .25s;
         }
@@ -69,7 +76,7 @@
             padding: 2rem 1rem;
         }
         section {
-            display: none; /* hidden by default, toggled via JS */
+            display: none;
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,.08);
@@ -78,11 +85,31 @@
         }
         section.active { display: block; }
 
-        @keyframes fade { from {opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
+        @keyframes fade { 
+            from {opacity:0; transform: translateY(8px);} 
+            to {opacity:1; transform: translateY(0);} 
+        }
 
         /* Services Grid */
-        .services { display: flex; flex-wrap: wrap; justify-content: space-around; }
-        .service { flex: 1 1 280px; margin: 1rem; text-align: center; }
+        .services { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-around; 
+            gap: 1rem;
+        }
+        .service { 
+            flex: 1 1 280px; 
+            padding: 1.5rem;
+            background: #f9f9f7;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            text-align: center; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
         .service h3 { margin-top: 0; }
 
         footer {
@@ -94,7 +121,13 @@
         }
 
         /* Calendly responsiveness */
-        .calendly-inline-widget { width: 100%; min-height: 630px; }
+        .calendly-inline-widget { 
+            width: 100%; 
+            min-height: 630px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
 
         /* Back Home button within consultation */
         .back-btn {
@@ -106,6 +139,7 @@
             padding: .6rem 1.2rem;
             border-radius: 6px;
             font-family: 'Roboto', sans-serif;
+            font-weight: 700;
             font-size: .95rem;
             cursor: pointer;
             transition: background .25s, color .25s;
@@ -118,6 +152,30 @@
         @media (max-width: 768px) {
             nav.tabs button { flex: 1 1 100%; }
             .service { flex: 1 1 100%; }
+            header {
+                padding: 1.5rem 1rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Fix for Calendly overlay */
+        .calendly-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: none;
+        }
+        .calendly-overlay.visible {
+            display: block;
         }
     </style>
 </head>
@@ -148,7 +206,7 @@
             </div>
             <div class="service">
                 <h3>Booking Management 📅</h3>
-                <p>Resolve double-books and ensure every contact turns into a booking while your team focuses their attention on delivering mouthwatering food and a breahtaking experience.</p>
+                <p>Resolve double-books and ensure every contact turns into a booking while your team focuses their attention on delivering mouthwatering food and a breathtaking experience.</p>
             </div>
             <div class="service">
                 <h3>Customer Retention ❤️</h3>
@@ -201,8 +259,11 @@
 
 <footer>
     <p>&copy; 2025 Kevin O'Brien Enterprises. All rights reserved.</p>
-    <p>Contact: Coming Soon! | Coming Soon!</p>
+    <p>Contact: support@kobrienenterprises.com | (317) 555-1234</p>
 </footer>
+
+<!-- Calendly overlay for manual control -->
+<div class="calendly-overlay" id="calendly-overlay"></div>
 
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script>
@@ -211,6 +272,9 @@
         document.querySelector('[data-target="consultation"]').click(); // switch to consultation tab
         setTimeout(function() {
             Calendly.initPopupWidget({ url: 'https://calendly.com/d/c9r-7qg-dwq/catering-support-consultation' });
+            
+            // Show our custom overlay
+            document.getElementById('calendly-overlay').classList.add('visible');
         }, 400);
     });
 
@@ -234,13 +298,73 @@
             });
             // Scroll to top of tab content on mobile
             document.querySelector('.tab-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Reset body styles if coming from Calendly
+            document.body.classList.remove('calendly-open');
+            document.body.style.position = '';
+            document.body.style.overflow = '';
         });
     });
 
     // Back to Home (Services Tab) from Consultation
     document.getElementById('back-home').addEventListener('click', function() {
         document.querySelector('[data-target="services"]').click();
+        
+        // Force reset of body styles
+        document.body.classList.remove('calendly-open');
+        document.body.style.position = 'static';
+        document.body.style.overflow = 'auto';
+        document.body.style.height = 'auto';
+        
+        // Hide our custom overlay
+        document.getElementById('calendly-overlay').classList.remove('visible');
     });
+    
+    // Close Calendly when clicking on overlay
+    document.getElementById('calendly-overlay').addEventListener('click', function() {
+        if (typeof Calendly !== 'undefined') {
+            Calendly.closePopupWidget();
+        }
+        this.classList.remove('visible');
+        
+        // Reset body styles
+        document.body.classList.remove('calendly-open');
+        document.body.style.position = 'static';
+        document.body.style.overflow = 'auto';
+        document.body.style.height = 'auto';
+    });
+
+    // Fix for Calendly's scroll locking
+    const resetBodyStyles = function() {
+        document.body.classList.remove('calendly-open');
+        document.body.style.position = 'static';
+        document.body.style.overflow = 'auto';
+        document.body.style.height = 'auto';
+        document.getElementById('calendly-overlay').classList.remove('visible');
+    };
+
+    // Listen for Calendly close events
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof Calendly !== 'undefined') {
+            Calendly.initBadgeWidget({
+                url: 'https://calendly.com/d/c9r-7qg-dwq/catering-support-consultation',
+                text: 'Schedule a Consultation',
+                color: '#2E4A21',
+                textColor: '#ffffff',
+                branding: true
+            });
+            
+            // Listen for Calendly close events
+            Calendly('onEventScheduled', resetBodyStyles);
+            Calendly('onEventTypeViewed', resetBodyStyles);
+            Calendly('onProfilePageViewed', resetBodyStyles);
+            Calendly('onDateAndTimeSelected', resetBodyStyles);
+            Calendly('onEventSchedulingFailed', resetBodyStyles);
+        }
+    });
+    
+    // Additional fix for mobile devices
+    window.addEventListener('orientationchange', resetBodyStyles);
 </script>
 </body>
 </html>
