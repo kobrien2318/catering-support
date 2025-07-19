@@ -1,475 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin O'Brien Enterprises - Stress-Free Customer Support</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --brand-green: #2E4A21;
-            --brand-light-green: #4F7A2E;
-            --brand-gold: #D4A017;
-            --brand-bg: #f9f9f7;
-        }
-        * { box-sizing: border-box; }
-        body {
-            font-family: 'Lora', 'Roboto', sans-serif;
-            margin: 0;
-            background-color: var(--brand-bg);
-            color: #333;
-            line-height: 1.6;
-            overflow: auto;
-        }
-        header {
-            background: var(--brand-green);
-            color: #fff;
-            padding: 2rem 1rem;
-            text-align: center;
-            position: relative;
-        }
-        h1, h2 { 
-            margin: 0 0 .5rem 0; 
-            font-weight: 700; 
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        button.cta {
-            background: var(--brand-gold);
-            color: #fff;
-            padding: .75rem 1.5rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all .3s ease-in-out;
-            font-weight: 700;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        button.cta:hover { 
-            opacity: .85;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kevin O'Brien Enterprises</title>
+  <style>
+    body {
+      font-family: 'Verdana', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.7;
+    }
 
-        /* Tabs */
-        nav.tabs {
-            background: var(--brand-light-green);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        nav.tabs button {
-            flex: 1 1 120px;
-            padding: 1rem;
-            background: transparent;
-            border: none;
-            color: #fff;
-            font-weight: 700;
-            font-family: 'Roboto', sans-serif;
-            cursor: pointer;
-            transition: background .25s;
-        }
-        nav.tabs button.active,
-        nav.tabs button:hover {
-            background: var(--brand-green);
-        }
+    header {
+      background-color: #fff;
+      color: #bfa046;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
 
-        .tab-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-        section {
-            display: none;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.08);
-            padding: 1.5rem;
-            animation: fade .4s ease-in-out;
-        }
-        section.active { display: block; }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: #bfa046;
+    }
 
-        @keyframes fade { 
-            from {opacity:0; transform: translateY(8px);} 
-            to {opacity:1; transform: translateY(0);} 
-        }
+    nav {
+      text-align: center;
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #eee;
+    }
 
-        /* Services Grid */
-        .services { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: space-around; 
-            gap: 1rem;
-        }
-        .service { 
-            flex: 1 1 280px; 
-            padding: 1.5rem;
-            background: #f9f9f7;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            text-align: center; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .service:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .service h3 { margin-top: 0; }
+    nav a {
+      margin: 0 15px;
+      padding: 1rem 0.5rem;
+      display: inline-block;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        footer {
-            background: var(--brand-green);
-            color: #fff;
-            text-align: center;
-            padding: 1.5rem 1rem;
-            margin-top: 2rem;
-        }
+    nav a:hover {
+      color: #bfa046;
+    }
 
-        /* Calendly responsiveness */
-        .calendly-inline-widget { 
-            width: 100%; 
-            min-height: 630px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #e0e0e0;
-        }
+    section {
+      padding: 2rem 10%;
+    }
 
-        /* Back Home button within consultation */
-        .back-btn {
-            display: inline-block;
-            margin-top: 1.5rem;
-            background: transparent;
-            color: var(--brand-green);
-            border: 2px solid var(--brand-green);
-            padding: .6rem 1.2rem;
-            border-radius: 6px;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 700;
-            font-size: .95rem;
-            cursor: pointer;
-            transition: background .25s, color .25s;
-        }
-        .back-btn:hover {
-            background: var(--brand-green);
-            color: #fff;
-        }
+    section h2 {
+      color: #bfa046;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
 
-        @media (max-width: 768px) {
-            nav.tabs button { flex: 1 1 100%; }
-            .service { flex: 1 1 100%; }
-            header {
-                padding: 1.5rem 1rem;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-            h2 {
-                font-size: 1.2rem;
-            }
-        }
-        
-        /* Calendly popup styling */
-        .calendly-popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        .calendly-popup.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .calendly-popup-content {
-            background: white;
-            border-radius: 12px;
-            width: 95%;
-            max-width: 800px;
-            height: 85vh;
-            overflow: hidden;
-            position: relative;
-            transform: translateY(20px);
-            transition: transform 0.4s ease;
-        }
-        .calendly-popup.active .calendly-popup-content {
-            transform: translateY(0);
-        }
-        .close-popup {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--brand-green);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-        .close-popup:hover {
-            transform: scale(1.1);
-            background: #1e3817;
-        }
-        .popup-loader {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-        .popup-loader .spinner {
-            border: 5px solid rgba(46, 74, 33, 0.2);
-            border-top: 5px solid var(--brand-green);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-        .popup-loader p {
-            font-weight: 700;
-            color: var(--brand-green);
-            font-size: 1.2rem;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+    footer {
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      color: #888;
+      font-size: 0.9rem;
+      border-top: 1px solid #eee;
+    }
+
+    .highlight {
+      color: #bfa046;
+      font-weight: bold;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    ul li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <h1>Kevin O'Brien Enterprises -- Stress-Free Customer Support for Busy Indiana Catering Teams</h1>
-    <h2>Handle after-hours calls, booking chaos, and urgent requests—so your team can focus on the homestyle Hoosier food catering experience.</h2>
-    <button class="cta" id="book-consultation">Book Free Consultation</button>
+  <h1>Kevin O'Brien Enterprises</h1>
+  <p>Remote customer support for busy Indiana catering teams</p>
 </header>
 
-<!-- Tabs Navigation -->
-<nav class="tabs" aria-label="Main Sections">
-    <button class="tab-link active" data-target="services">Services</button>
-    <button class="tab-link" data-target="how-it-works">How It Works</button>
-    <button class="tab-link" data-target="testimonials">Testimonials</button>
-    <button class="tab-link" data-target="faq">FAQ</button>
-    <button class="tab-link" data-target="consultation">Consultation</button>
+<nav>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#how">How It Works</a>
+  <a href="#faq">FAQs</a>
+  <a href="#contact">Contact</a>
 </nav>
 
-<div class="tab-content">
-    <section id="services" class="active">
-        <h2>Offered Services</h2>
-        <div class="services">
-            <div class="service">
-                <h3>🕓24/7, Stress-Free Coverage🕓</h3>
-                <p>After-hours, weekends, or high-volume days & events -- every call is answered, every time. You'll never miss a lead, an urgent request, or a chance to serve your clients well.</p>
-            </div>
-            <div class="service">
-                <h3>📅Booking Management 📅</h3>
-                <p>No more double-bookings or missed messages. I help turn every qualified inquiry into a smooth, confirmed booking -- so your team can stay focused on delivering incredible food and flawless events.</p>
-            </div>
-            <div class="service">
-                <h3>❤️Customer Retention ❤️</h3>
-                <p>Great service keeps clients coming back. I help ensure no one is left waiting, wondering, or overlooked -- so every interaction strengthens trust and encourages repeat business.</p>
-            </div>
-        </div>
-    </section>
+<section id="about">
+  <h2>About</h2>
+  <p>Kevin O’Brien launched this service with a clear mission: to bring reliable, world-class phone support to local catering teams during their busiest moments. An Indianapolis native with a background in customer & food service and a deep respect for the fast-paced nature of the catering world, he created a small Indiana-based company dedicated to filling that gap: remote, on-call phone support for caterers when it’s needed most. Whether you're managing a full calendar of events or just need help covering the phones during a weekend rush, our goal is simple — to ensure every client call gets the attention it deserves.</p>
+</section>
 
-    <section id="how-it-works">
-        <h2>How It Works</h2>
-        <ol>
-            <li>You forward calls, messages, and general overflow traffic to me during busy periods. I operate offsite as a seamless extension of your team -- so you can stay focused on the food and experience.</li>
-            <li>Client interactions are handled using your preferred playbook and tone. Communication with you and your staff remains direct, responsive, and consistent throughout.</li>
-            <li>You receive real-time updates upon request and scheduled reports -- no frills, no noise, just exactly what you need to stay in control.</li>
-        </ol>
-    </section>
+<section id="services">
+  <h2>Services</h2>
+  <ul>
+    <li>After-hours & weekend call support</li>
+    <li>Overflow call handling during peak times</li>
+    <li>Emergency communication backup</li>
+    <li>Brand-aligned, remote-friendly voice support</li>
+    <li>Seamless setup and simple onboarding</li>
+  </ul>
+</section>
 
-    <section id="testimonials">
-        <h2>Testimonials</h2>
-        <blockquote>
-            <p>"Kevin O'Brien Enterprises and their service has helped us out tremendously. We saved 20+ hours/week in labor during wedding season!" – <strong>Margaret T,  Local Independent Event Caterer</strong></p>
-        </blockquote>
-        <blockquote>
-            <p>"Our customer satisfaction increased by 35% after implementing this service and our bookings doubled. Kevin O'Brien Enterprises and their services ensure our small team never gets overwhelmed or falls behind." – <strong>Steven P.</strong></p>
-        </blockquote>
-         <blockquote> <p>"We were missing a lot of after-hours calls during wedding season. Kevin’s support helped us keep things organized without overwhelming our staff." – <strong>Jasmine R.</strong></p>
-        </blockquote>
-        <blockquote><p>"Reliable and easy to work with. It feels like having an extra team member during the busiest times, without the cost of hiring." – <strong>Mike S., Hoosier Party Catering</strong></p>
-       </blockquote>
-   </section>
+<section id="how">
+  <h2>How It Works</h2>
+  <p>We operate as an on-call extension of your team. No outsourcing, no call centers. When your main line rings and you're unavailable, calls forward directly to us. We answer promptly under your business name, gather key details from the inquiry, and handle next steps based on your preferences.</p>
+</section>
 
-    <section id="faq">
-        <h2>Frequently Asked Questions</h2>
-        <dl>
-            <dt>FAQ: Will using your service mean giving up control?</dt>
-            <dd>A: Not at all. You maintain full oversight and approve all key decisions. We operate as a seamless, offsite extension of your team — always aligned with your standards and priorities..</dd>
-            <dt>FAQ: How much does your service cost?</dt>
-            <dd>A: All 1:1 consultations are free. Our monthly service packages start at $225/month (or $175/month for first-time clients), with flexible hourly, on-demand support available from $25/hour. No long-term contracts required.</dd>
-            <dt>FAQ: How quickly can services start?</dt>
-            <dd>A: Services can typically begin within 24–48 hours of your consultation — sometimes even sooner if availability allows. For high-volume days, we recommend booking your consultation at least 48 hours in advance to ensure a smooth handoff.</dd>
-            <dt>FAQ: Do you offer services sooner than 24-48 hours?</dt>
-            <dd>A: Yes -- rush onboarding may be available in special cases. Just let me know during your free consultation if you're facing a time-sensitive or other unique situation.</dd>
-            <dt>FAQ: Are your services a good fit for smaller catering teams?</dt>
-            <dd>A: Absolutely. My support model is designed with flexibility in mind — whether you're a solo caterer, small team, or large team -- you'll get professional, responsive help without the overhead of hiring in-house..</dd>
-            <dt>FAQ: Are there any contracts involved?</dt>
-            <dd>A: Not unless you sign up for one. You’re welcome to use the service on a flexible, pay‑as‑you‑go basis — or opt into a longer-term arrangement if that better fits your operations. Some clients only need support for a single day; others prefer consistent coverage. It’s entirely up to you.</dd>
-            <dt>FAQ: What if I only need help occasionally -- can I still use your services?</dt>
-            <dd>A: Absolutely. You don't need to commit to a monthly plan to get support. Our hourly, pay-as-you-go model is perfected for unexpected volume spikes, busy weekends, or emergency coverage.</dd>
-            <dt>FAQ: Will my clients know they're speaking to someone offsite?</dt>
-            <dd>A: Not unless you want them to. I follow your brand's preferred language, script, and call handling standards -- so callers experience the same friendly, professional tone they'd expect from your own in-house team.</dd>
-        </dl>
-    </section>
+<section id="faq">
+  <h2>FAQs</h2>
+  <p><span class="highlight">Is this only for large caterers?</span><br>
+  Not at all. While many of our clients run large operations, we also support smaller, independent caterers. If your phone gets busy and you want to make sure no inquiry falls through the cracks, this service is for you.</p>
 
-    <section id="consultation">
-        <h2>Schedule Your Free Consultation</h2>
-        <div class="calendly-inline-widget" data-url="https://calendly.com/kobrien2318" style="min-width:320px;height:630px;"></div>
-        <button class="back-btn" id="back-home">Back to Home</button>
-    </section>
-</div>
+  <p><span class="highlight">How much does it cost?</span><br>
+  We offer flexible packages based on your call volume and hours of coverage. Pricing is simple, competitive, and always tailored to your needs. A first time client discount is available -- schedule a free consultation to learn more.</p>
 
-<!-- Custom Calendly Popup -->
-<div class="calendly-popup" id="calendly-popup">
-    <div class="calendly-popup-content">
-        <button class="close-popup" id="close-popup">×</button>
-        <div class="popup-loader">
-            <div class="spinner"></div>
-            <p>Loading Consultation Scheduler...</p>
-        </div>
-        <div class="calendly-inline-widget" id="popup-calendly" data-url="https://calendly.com/kobrien2318" style="min-width:320px;height:100%;"></div>
-    </div>
-</div>
+  <p><span class="highlight">When do you answer calls?</span><br>
+ We answer calls that are forwarded to us — typically during peak hours, after-hours, or anytime you're unavailable and need backup. You stay in control of when calls forward. We’re here as an extension of your team when you need coverage, not a replacement for your day-to-day operations.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p><strong>Kevin O'Brien – Founder & Operator</strong></p>
+  <p>📞 (317) 300‑4289</p>
+  <p>📧 kevinobrienenterprisesindy@gmail.com</p>
+  <p>📅 <a href="https://calendly.com/kobrien2318/30min" target="_blank">Schedule A Free Phone Consultation</a></p>
+</section>
 
 <footer>
-    <p>&copy; 2025 Kevin O'Brien Enterprises. All rights reserved.</p>
-   <p>Email: kevinobrienenterprisesindy@gmail.com | Phone: (317) 300-4289</p>
+  &copy; 2025 Kevin O'Brien Enterprises. All rights reserved.
 </footer>
 
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<script>
-    // Tab interaction
-    const tabLinks = document.querySelectorAll('.tab-link');
-    const sections = document.querySelectorAll('section');
-
-    tabLinks.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const target = btn.getAttribute('data-target');
-            // update active tab button
-            tabLinks.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            // show target section
-            sections.forEach(sec => {
-                if(sec.id === target) {
-                    sec.classList.add('active');
-                } else {
-                    sec.classList.remove('active');
-                }
-            });
-            // Scroll to top of tab content on mobile
-            document.querySelector('.tab-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-
-    // Back to Home (Services Tab) from Consultation
-    document.getElementById('back-home').addEventListener('click', function() {
-        document.querySelector('[data-target="services"]').click();
-    });
-
-    // Calendly Popup Functionality
-    const popup = document.getElementById('calendly-popup');
-    const closeBtn = document.getElementById('close-popup');
-    
-    // Open Calendly popup when top button is clicked
-    document.getElementById('book-consultation').addEventListener('click', function() {
-        // Show the popup
-        popup.classList.add('active');
-        
-        // Initialize Calendly inside popup
-        setTimeout(function() {
-            if (typeof Calendly !== 'undefined') {
-                // Hide loader and show Calendly
-                document.querySelector('.popup-loader').style.display = 'none';
-                document.getElementById('popup-calendly').style.display = 'block';
-                
-                // Initialize the Calendly widget
-                Calendly.initInlineWidget({
-                    url: 'https://calendly.com/d/c9r-7qg-dwq/catering-support-consultation',
-                    parentElement: document.getElementById('popup-calendly'),
-                    prefill: {},
-                    utm: {}
-                });
-            } else {
-                // If Calendly isn't loaded, show error
-                document.querySelector('.popup-loader p').textContent = 'Error loading scheduler. Please try again.';
-                setTimeout(() => {
-                    popup.classList.remove('active');
-                }, 3000);
-            }
-        }, 500);
-    });
-
-    // Close popup when X button is clicked
-    closeBtn.addEventListener('click', function() {
-        popup.classList.remove('active');
-    });
-
-    // Close popup when clicking outside content
-    popup.addEventListener('click', function(e) {
-        if (e.target === popup) {
-            popup.classList.remove('active');
-        }
-    });
-
-    // Initialize Calendly for the consultation tab
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize badge widget for the consultation tab
-        if (typeof Calendly !== 'undefined') {
-            Calendly.initBadgeWidget({
-                url: 'https://calendly.com/d/c9r-7qg-dwq/catering-support-consultation',
-                text: 'Schedule a Consultation',
-                color: '#2E4A21',
-                textColor: '#ffffff',
-                branding: true
-            });
-        }
-        
-        // Listen for successful booking in popup
-        if (typeof Calendly !== 'undefined') {
-            Calendly('onEventScheduled', function() {
-                // Close popup after booking
-                setTimeout(() => {
-                    popup.classList.remove('active');
-                    // Show a thank you message (optional)
-                    alert('Thank you for scheduling your consultation! We look forward to speaking with you.');
-                }, 1000);
-            });
-        }
-    });
-    
-    // Keyboard shortcut to close popup
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && popup.classList.contains('active')) {
-            popup.classList.remove('active');
-        }
-    });
-</script>
 </body>
 </html>
